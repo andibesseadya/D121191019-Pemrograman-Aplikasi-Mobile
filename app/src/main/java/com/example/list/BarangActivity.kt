@@ -2,15 +2,16 @@ package com.example.list
 
 import android.content.ContentValues
 import android.content.DialogInterface
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
+import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_barang.*
 
 class BarangActivity : AppCompatActivity() {
+
     var id=0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,12 +19,14 @@ class BarangActivity : AppCompatActivity() {
         setContentView(R.layout.activity_barang)
 
         try {
-            var bundle: Bundle = intent.extras
-            id = bundle.getInt("MainActId", 0)
+            var bundle: Bundle? = intent.extras
+            if (bundle != null) {
+                id = bundle.getInt("MainActId", 0)
+            }
             if (id !=0){
-                txNama.setText(bundle.getString("MainActNama"))
-                txJenis.setText(bundle.getString("MainActJenis"))
-                txHarga.setText(bundle.getString("MainActHarga"))
+                txNama.setText(bundle?.getString("MainActNama"))
+                txJenis.setText(bundle?.getString("MainActJenis"))
+                txHarga.setText(bundle?.getString("MainActHarga"))
             }
         }catch (ex: Exception){
         }
